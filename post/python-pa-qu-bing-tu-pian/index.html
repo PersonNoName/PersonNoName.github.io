@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>我的第一个博客 | 博客</title>
+<title>python爬取Bing图片 | 博客</title>
 <meta name="description" content="<font face=Arial size=2>By</font>
 </br>
 <font face=楷体 size=3><b><i>去远方</b></i></font>" />
@@ -65,42 +65,108 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              我的第一个博客
+              python爬取Bing图片
             </h2>
             <div class="post-info">
               <span>
-                2019-11-11
+                2019-11-12
               </span>
               <span>
-                1 min read
+                2 min read
               </span>
               
-                <a href="https://PersonNoName.github.io/tag/rnjgp5fXb" class="post-tag">
-                  # 生活
+                <a href="https://PersonNoName.github.io/tag/THIJjfxGV" class="post-tag">
+                  # Python
                 </a>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p><font face=楷体 size=4> 一.第一次尝试 </font></p>
-<p><font face=楷体 size=3>&nbsp;&nbsp;打算建网站还是在几周之前依旧是拖到了今天才把它给完成，而我<s>参考</s>参照的教程就在下面的链接。</font></p>
-<blockquote></blockquote>
-<ul>
-<li>
-<p><a href="https://fehey.com/post/hve-notes-start/">用Gridea搭建一个免费的博客</a></p>
-</li>
-</ul>
-<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/PersonNoName/Picbed_PicGo/master/Main.JPG" alt="Main"></figure>
+                <h3 id="用python完成保存必应壁纸">用python完成保存必应壁纸</h3>
+<p>####实现步骤</p>
+<blockquote>
+<ol>
+<li><font face=楷体 size=3>获得bing官方API</li>
+<blockquote>
+<p><a href="https://cn.bing.com/HPImageArchive.aspx?format=js&amp;idx=0&amp;n=1&amp;mkt=zh-CN">https://cn.bing.com/HPImageArchive.aspx?format=js&amp;idx=0&amp;n=1&amp;mkt=zh-CN</a></font></p>
+</blockquote>
+<li><font face=楷体 size=3>通过requests模块（需encode）或者urllib模块的request来打开网页获取源码，并且通过re.findall来获得url和名称</li>
+<li><font face=楷体 size=3>最后用urllib来保存图片,代码如下</li>
+</ol>
+</blockquote>
+<pre><code class="language-python">with open(path,'wb') as f:
+    try:
+        res = urllib.request.urlopen(url)
+        img = res.read()
+        f.write(img)
+    except (urllib.error.URLError,ValueError) as e:
+        print(&quot;urllib.error.URLError&quot;,e)
+</code></pre>
+<h4 id="爬取bing背景源码如下">爬取bing背景源码如下</h4>
+<pre><code class="language-python"># coding=gbk
+import urllib
+import requests
+import re
+
+#测试requests获得网页
+html = requests.get(&quot;https://cn.bing.com/HPImageArchive.aspx?format=js&amp;idx=0&amp;n=1&amp;mkt=zh-CN&quot;)
+text = html.text.encode(&quot;GBK&quot;,&quot;ignore&quot;)
+#用urllib获得网页
+html2 = urllib.request.urlopen(&quot;https://cn.bing.com/HPImageArchive.aspx?format=js&amp;idx=0&amp;n=1&amp;mkt=zh-CN&quot;)
+text2 = html2.read()
+text2 = text2.decode('utf-8','ignore')
+#获得图片网页
+url = &quot;https://cn.bing.com&quot;+ re.findall(&quot;\&quot;url\&quot;:\&quot;(.*?)\&quot;&quot;,text2)[0]
+#获得图片名称1-&gt;...
+name = re.findall(&quot;\&quot;copyright\&quot;:\&quot;(.*?)\(&quot;,text2)[0]
+#获得保存地址
+path = &quot;C:/Users/Alen/Pictures/Bing/&quot;+name+&quot;.jpg&quot;
+#保存文件
+with open(path,'wb') as f:
+    try:
+        res = urllib.request.urlopen(url)
+        img = res.read()
+        f.write(img)
+    except (urllib.error.URLError,ValueError) as e:
+        print(&quot;urllib.error.URLError&quot;,e)
+</code></pre>
+<h4 id="实现效果如下">实现效果如下</h4>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/PersonNoName/Picbed_PicGo/master/Effect_01.png" alt="效果图"></figure>
 
               </div>
               <div class="toc-container">
-                
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E7%94%A8python%E5%AE%8C%E6%88%90%E4%BF%9D%E5%AD%98%E5%BF%85%E5%BA%94%E5%A3%81%E7%BA%B8">用python完成保存必应壁纸</a>
+<ul>
+<li><a href="#%E7%88%AC%E5%8F%96bing%E8%83%8C%E6%99%AF%E6%BA%90%E7%A0%81%E5%A6%82%E4%B8%8B">爬取bing背景源码如下</a></li>
+<li><a href="#%E5%AE%9E%E7%8E%B0%E6%95%88%E6%9E%9C%E5%A6%82%E4%B8%8B">实现效果如下</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
               </div>
             </div>
           </article>
         </div>
 
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://PersonNoName.github.io/post/test_gitalk">
+              <h3 class="post-title">
+                Test_Gitalk
+              </h3>
+            </a>
+          </div>
         
 
         
