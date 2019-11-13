@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Test_Gitalk | 博客</title>
+<title>测试CSS的样式 | 博客</title>
 <meta name="description" content="<font face=Arial size=2>By</font>
 </br>
 <font face=楷体 size=3><b><i>去远方</b></i></font>" />
@@ -65,60 +65,70 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              Test_Gitalk
+              测试CSS的样式
             </h2>
             <div class="post-info">
               <span>
-                2019-11-12
+                2019-11-13
               </span>
               <span>
-                1 min read
+                2 min read
               </span>
-              
-                <a href="https://PersonNoName.github.io/tag/gEqsVKWzm" class="post-tag">
-                  # 网页学习
-                </a>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <h4 id="测试评论是否成功">测试评论是否成功</h4>
-<p><font face=楷体 size=4 color=red>测试成功了</font></p>
-<p><font face=楷体 size=3>&nbsp;&nbsp;完成主要是按下列步骤完成</font></p>
-<ol>
-    <li>
-        <font face=楷体 size=3>注册OAuth application</font>
-    </li>
-    <li>
-        <font face=楷体 size=3>复制ID和Serect到Gridea的评论配置</font>
-    </li>
-</ol>
-<hr>
-<h3 id="以上是简易的实现步骤具体请参照以下链接">以上是简易的实现步骤具体请参照以下链接</h3>
-<blockquote>
-<p><a href="https://fehey.com/post/hve-notes-start/">https://fehey.com/post/hve-notes-start/</a></p>
-</blockquote>
+                <html>
+<head>
+<link rel="stylesheet" type="text/css" href="https://raw.githack.com/PersonNoName/PersonNoName.github.io/master/styles/blog.css"/>
+</head>
+<body>
+    <h2>一.起因</h2>
+    <p class=indent>本来只是想学一下怎样实现css进行美化界面，今天顺着javascript也把css给学了一点基础
+    <h2>二.学习网站</h2>
+    <p>
+        <ol>
+            <li><a class="hide" href="https://www.w3school.com.cn/js/index.asp">javascript学习网站</a></li>
+            <li><a class="hide" href="https://www.runoob.com/css/css-tutorial.html">css学习网站</a></li>
+        </ol>
+    </p>
+    <h2>三.效果及代码</h2>
+    <ol>
+            <li>效果显示
+            <img src="https://raw.githubusercontent.com/PersonNoName/Picbed_PicGo/master/Effect_02.png"/ width=650 height=400></li>
+            <li>代码展示</li>
+    </ol>
+<pre><code class="language-python">h1	{font-family:楷体;}
+h1.red	{font-family:楷体; color:red}
 
+h2	{font-family:楷体;}
+h2.red	{font-family:楷体; color:red}
+
+h3	{font-family:楷体;}
+h3.red	{font-family:楷体; color:red}
+
+h4	{font-family:楷体;}
+h4.red	{font-family:楷体; color:red}
+
+h5	{font-family:楷体;}
+h5.red	{font-family:楷体; color:red}
+
+p	{font-size:18;font-family:楷体;}
+p.b_r	{font-size:18;font-family:楷体;font-style:italic;font-weight:bold}
+p.red	{font-size:18;font-family:楷体; font-weight:bold;color:red}
+p.bold	{font-size:18;font-family:楷体; font-weight:bold}
+p.indent{font-size:18;font-family:楷体;text-indent:20px}
+
+/*链接下划线隐藏*/
+a.hide	{text-decoration:none}
+a.display{text-decoration:underline;}
+</code></pre>
+</body>
+</html>
               </div>
               <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#%E6%B5%8B%E8%AF%95%E8%AF%84%E8%AE%BA%E6%98%AF%E5%90%A6%E6%88%90%E5%8A%9F">测试评论是否成功</a></li>
-</ul>
-</li>
-<li><a href="#%E4%BB%A5%E4%B8%8A%E6%98%AF%E7%AE%80%E6%98%93%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%AD%A5%E9%AA%A4%E5%85%B7%E4%BD%93%E8%AF%B7%E5%8F%82%E7%85%A7%E4%BB%A5%E4%B8%8B%E9%93%BE%E6%8E%A5">以上是简易的实现步骤具体请参照以下链接</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
+                
               </div>
             </div>
           </article>
@@ -127,9 +137,9 @@
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://PersonNoName.github.io/post/di-yi-ge-bo-ke">
+            <a href="https://PersonNoName.github.io/post/test_2_secret">
               <h3 class="post-title">
-                我的第一个博客
+                测试进入界面加入密码
               </h3>
             </a>
           </div>
