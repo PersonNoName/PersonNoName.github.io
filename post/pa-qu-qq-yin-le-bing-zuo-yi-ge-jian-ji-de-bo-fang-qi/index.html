@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>python爬取Bing图片 | 博客</title>
+<title>爬取QQ音乐并做一个简洁的播放器 | 博客</title>
 <meta name="description" content="<font face=Arial size=2>By</font>
 </br>
 <font face=楷体 size=3><b><i>去远方</b></i></font>" />
@@ -65,95 +65,46 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              python爬取Bing图片
+              爬取QQ音乐并做一个简洁的播放器
             </h2>
             <div class="post-info">
               <span>
-                2019-11-12
+                2019-11-24
               </span>
               <span>
-                2 min read
+                3 min read
               </span>
-              
-                <a href="https://PersonNoName.github.io/tag/THIJjfxGV" class="post-tag">
-                  # Python
-                </a>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <h3 id="用python完成保存必应壁纸">用python完成保存必应壁纸</h3>
-<h4 id="实现步骤">实现步骤</h4>
+                <link rel="stylesheet" type="text/css" href="https://raw.githack.com/PersonNoName/Blog/master/styles/blog.css"/>
+<script language="javascript" src = "https://raw.githack.com/PersonNoName/Blog/master/user/password.js"></script>
+<div class = f_s>
+<h3>起因</h3>
+<p class=indent>打算用python写一个很小的播放器，不想用一个很大一个界面来播放音乐，这其中又打算用搜索来获得音乐文件，而最后得到了m4a又需要转格式为mp3。用到了ffmpeg这导致了我最后我无法打包为无窗口的程序。
+<h3>过程<h3>
+<p class=indent>因为要写窗口所以用到了pyqt5，又是一个播放器最后选择了pygame.mixer.music.play()方法，首先是通过以下的链接了解并获得了qq音乐的api将它写一个py文件，用来获得音乐，封面，歌手，歌名，这其中用到了将json文件转换为python的json.loads()。
 <blockquote>
-<ol>
-<li><font face=楷体 size=3>获得bing官方API</li>
 <blockquote>
-<p><a href="https://cn.bing.com/HPImageArchive.aspx?format=js&amp;idx=0&amp;n=1&amp;mkt=zh-CN">https://cn.bing.com/HPImageArchive.aspx?format=js&amp;idx=0&amp;n=1&amp;mkt=zh-CN</a></font></p>
+<p><a href="https://www.jianshu.com/p/67e4bd47d981">QQ音乐API</a></p>
 </blockquote>
-<li><font face=楷体 size=3>通过requests模块（需encode）或者urllib模块的request来打开网页获取源码，并且通过re.findall来获得url和名称</li>
-<li><font face=楷体 size=3>最后用urllib来保存图片,代码如下</li>
-</ol>
 </blockquote>
-<pre><code class="language-python">with open(path,'wb') as f:
-    try:
-        res = urllib.request.urlopen(url)
-        img = res.read()
-        f.write(img)
-    except (urllib.error.URLError,ValueError) as e:
-        print(&quot;urllib.error.URLError&quot;,e)
-</code></pre>
-<h4 id="爬取bing背景源码如下">爬取bing背景源码如下</h4>
-<pre><code class="language-python"># coding=gbk
-import urllib
-import requests
-import re
-
-#测试requests获得网页
-html = requests.get(&quot;https://cn.bing.com/HPImageArchive.aspx?format=js&amp;idx=0&amp;n=1&amp;mkt=zh-CN&quot;)
-text = html.text.encode(&quot;GBK&quot;,&quot;ignore&quot;)
-#用urllib获得网页
-html2 = urllib.request.urlopen(&quot;https://cn.bing.com/HPImageArchive.aspx?format=js&amp;idx=0&amp;n=1&amp;mkt=zh-CN&quot;)
-text2 = html2.read()
-text2 = text2.decode('utf-8','ignore')
-#获得图片网页
-url = &quot;https://cn.bing.com&quot;+ re.findall(&quot;\&quot;url\&quot;:\&quot;(.*?)\&quot;&quot;,text2)[0]
-#获得图片名称1-&gt;...
-name = re.findall(&quot;\&quot;copyright\&quot;:\&quot;(.*?)\(&quot;,text2)[0]
-#获得保存地址
-path = &quot;C:/Users/Alen/Pictures/Bing/&quot;+name+&quot;.jpg&quot;
-#保存文件
-with open(path,'wb') as f:
-    try:
-        res = urllib.request.urlopen(url)
-        img = res.read()
-        f.write(img)
-    except (urllib.error.URLError,ValueError) as e:
-        print(&quot;urllib.error.URLError&quot;,e)
-</code></pre>
-<h4 id="实现效果如下">实现效果如下</h4>
-<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/PersonNoName/Picbed_PicGo/master/Effect_01.png" alt="效果图"></figure>
+<p>然后再创建PyQt5 designer设计三个窗口分别用来实现主窗口，搜索窗口，和“喜欢”列表窗口，其中用到的新知识有通过setVisible将控件隐藏或显示，setStyleSheet的应用，循环创建按钮并且通过sender传递信号，在最后还需通过判断文件是否存在以使得不必每次点击相同的歌曲都要下载，用到了os.path.exists()，后面又因为当时在搜索的时候是直接将30个文件的信息一次性保存在列表里，而这会浪费很多时间来等待，后又改变了所有的保存格式每次保存6个数据，当点击下一页时继续保存6个或者剩余的个数（小于6）（完全懵圈的时候改的，可能很绕）。而“喜欢”列表是在主界面上点击下载按钮然后将缓存的MP3复制到下载中，然后通过os.list来获得所有的文件并通过循环按钮来显示已下载的音乐，然后通过点击来交互。主界面除了可以打开下载和搜索和列表，还通过border-image来将由封面url获得的封面显示，利用timer来实现计时，通过1s时间的倒计时来实现对当前音乐的播放计时mediainfo获得mp3的总时长，结合这两个来实现音乐的自然播放结束和暂停，下一曲，上一曲（上一曲和下一曲只要通过传入地址到播放音乐的函数中即可）</p></p>
+<h3>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/PersonNoName/Picbed_PicGo/master/Effect_03.png" alt=""></figure>
+<p>采用的是透明的背景三个窗口都没有边框，也没设置移动，所以是固定的,具体的文件可到我的github中查看</p>
+<blockquote>
+<blockquote>
+<p><a href="">MyGithub</a></p>
+</blockquote>
+</blockquote>
+</div>
 
               </div>
               <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#%E7%94%A8python%E5%AE%8C%E6%88%90%E4%BF%9D%E5%AD%98%E5%BF%85%E5%BA%94%E5%A3%81%E7%BA%B8">用python完成保存必应壁纸</a>
-<ul>
-<li><a href="#%E5%AE%9E%E7%8E%B0%E6%AD%A5%E9%AA%A4">实现步骤</a></li>
-<li><a href="#%E7%88%AC%E5%8F%96bing%E8%83%8C%E6%99%AF%E6%BA%90%E7%A0%81%E5%A6%82%E4%B8%8B">爬取bing背景源码如下</a></li>
-<li><a href="#%E5%AE%9E%E7%8E%B0%E6%95%88%E6%9E%9C%E5%A6%82%E4%B8%8B">实现效果如下</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
+                
               </div>
             </div>
           </article>
@@ -162,9 +113,9 @@ with open(path,'wb') as f:
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://PersonNoName.github.io/post/test_gitalk">
+            <a href="https://PersonNoName.github.io/post/guan-yu-sheng-huo">
               <h3 class="post-title">
-                Test_Gitalk
+                关于生活
               </h3>
             </a>
           </div>

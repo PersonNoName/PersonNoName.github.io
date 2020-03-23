@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>python爬取Bing图片 | 博客</title>
+<title>关于生活 | 博客</title>
 <meta name="description" content="<font face=Arial size=2>By</font>
 </br>
 <font face=楷体 size=3><b><i>去远方</b></i></font>" />
@@ -65,95 +65,31 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              python爬取Bing图片
+              关于生活
             </h2>
             <div class="post-info">
               <span>
-                2019-11-12
+                2019-11-15
               </span>
               <span>
                 2 min read
               </span>
               
-                <a href="https://PersonNoName.github.io/tag/THIJjfxGV" class="post-tag">
-                  # Python
-                </a>
-              
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <h3 id="用python完成保存必应壁纸">用python完成保存必应壁纸</h3>
-<h4 id="实现步骤">实现步骤</h4>
-<blockquote>
-<ol>
-<li><font face=楷体 size=3>获得bing官方API</li>
-<blockquote>
-<p><a href="https://cn.bing.com/HPImageArchive.aspx?format=js&amp;idx=0&amp;n=1&amp;mkt=zh-CN">https://cn.bing.com/HPImageArchive.aspx?format=js&amp;idx=0&amp;n=1&amp;mkt=zh-CN</a></font></p>
-</blockquote>
-<li><font face=楷体 size=3>通过requests模块（需encode）或者urllib模块的request来打开网页获取源码，并且通过re.findall来获得url和名称</li>
-<li><font face=楷体 size=3>最后用urllib来保存图片,代码如下</li>
-</ol>
-</blockquote>
-<pre><code class="language-python">with open(path,'wb') as f:
-    try:
-        res = urllib.request.urlopen(url)
-        img = res.read()
-        f.write(img)
-    except (urllib.error.URLError,ValueError) as e:
-        print(&quot;urllib.error.URLError&quot;,e)
-</code></pre>
-<h4 id="爬取bing背景源码如下">爬取bing背景源码如下</h4>
-<pre><code class="language-python"># coding=gbk
-import urllib
-import requests
-import re
-
-#测试requests获得网页
-html = requests.get(&quot;https://cn.bing.com/HPImageArchive.aspx?format=js&amp;idx=0&amp;n=1&amp;mkt=zh-CN&quot;)
-text = html.text.encode(&quot;GBK&quot;,&quot;ignore&quot;)
-#用urllib获得网页
-html2 = urllib.request.urlopen(&quot;https://cn.bing.com/HPImageArchive.aspx?format=js&amp;idx=0&amp;n=1&amp;mkt=zh-CN&quot;)
-text2 = html2.read()
-text2 = text2.decode('utf-8','ignore')
-#获得图片网页
-url = &quot;https://cn.bing.com&quot;+ re.findall(&quot;\&quot;url\&quot;:\&quot;(.*?)\&quot;&quot;,text2)[0]
-#获得图片名称1-&gt;...
-name = re.findall(&quot;\&quot;copyright\&quot;:\&quot;(.*?)\(&quot;,text2)[0]
-#获得保存地址
-path = &quot;C:/Users/Alen/Pictures/Bing/&quot;+name+&quot;.jpg&quot;
-#保存文件
-with open(path,'wb') as f:
-    try:
-        res = urllib.request.urlopen(url)
-        img = res.read()
-        f.write(img)
-    except (urllib.error.URLError,ValueError) as e:
-        print(&quot;urllib.error.URLError&quot;,e)
-</code></pre>
-<h4 id="实现效果如下">实现效果如下</h4>
-<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/PersonNoName/Picbed_PicGo/master/Effect_01.png" alt="效果图"></figure>
-
+                <link rel="stylesheet" type="text/css" href="https://raw.githack.com/PersonNoName/Blog/master/styles/blog.css"/>
+<div>
+<div class="f_s">
+<p class="indent">前天做了一个梦，那是一个怎样的梦呢我已经记不得了，我只记得那种感觉，一种压迫，一种束缚，那是自己给予自己的一种枷锁，如果说前三年生活教会了我怎样不会痛苦，我想这一年生活会教会我如何去生活，一种平和，颓唐与兴奋，癫狂与平静，万事万物依旧是处于一种动态的平衡之中。有时候我在想我是否过于极端，虽然我说平衡是动态的并不是一切都处于最中间的状态，但极端真是属于平衡吗。</p>
+<p class="indent">不再说这些意识里的东西，对于生活，我想我得好好的面对了，生活是现实的，一切都需要理性的东西去支撑，我也许早已明白了，但如何去做呢，我想我得好好想想了，理性的东西如何去做呢？我想我已经知道了。</p>
+<p class="indent">我是个什么样的人呢？我知道我所有的性格都是我自己，所有的喜怒哀乐都是真实的但同时这所有又是一种虚假的东西，因为我即虚伪又真实，当所有人都把那个虚假的人当作我时，我又该如何面对呢，是依旧带着虚假的面具还是一个疏离所有人的人呢，我已经有答案了，就在刚才我突然意识到去掉任何一个自己，虚假的或真实的都太过极端了，虽然我喜欢极端的事物，但去掉任何一个性格，我将依旧处于痛苦之中，保持两个性格的平衡是让我处于幸福与痛苦的分界线的边缘不再越线。</p>
+</div>
+</div>
               </div>
               <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#%E7%94%A8python%E5%AE%8C%E6%88%90%E4%BF%9D%E5%AD%98%E5%BF%85%E5%BA%94%E5%A3%81%E7%BA%B8">用python完成保存必应壁纸</a>
-<ul>
-<li><a href="#%E5%AE%9E%E7%8E%B0%E6%AD%A5%E9%AA%A4">实现步骤</a></li>
-<li><a href="#%E7%88%AC%E5%8F%96bing%E8%83%8C%E6%99%AF%E6%BA%90%E7%A0%81%E5%A6%82%E4%B8%8B">爬取bing背景源码如下</a></li>
-<li><a href="#%E5%AE%9E%E7%8E%B0%E6%95%88%E6%9E%9C%E5%A6%82%E4%B8%8B">实现效果如下</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
+                
               </div>
             </div>
           </article>
@@ -162,9 +98,9 @@ with open(path,'wb') as f:
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://PersonNoName.github.io/post/test_gitalk">
+            <a href="https://PersonNoName.github.io/post/hai-shang-de-gang-qin-shi">
               <h3 class="post-title">
-                Test_Gitalk
+                海上的钢琴师
               </h3>
             </a>
           </div>
